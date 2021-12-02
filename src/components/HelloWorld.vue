@@ -9,7 +9,6 @@
               <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
             </v-list-item-avatar>
           </v-list-item>
-
           <v-list-item link>
             <v-list-item-content>
               <v-list-item-title class="text-h6">
@@ -17,7 +16,6 @@
               </v-list-item-title>
               <v-list-item-subtitle>john@vuetifyjs.com</v-list-item-subtitle>
             </v-list-item-content>
-
             <v-list-item-action>
               <v-icon>mdi-menu-down</v-icon>
             </v-list-item-action>
@@ -30,7 +28,6 @@
               <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon>
-
               <v-list-item-content>
                 <v-list-item-title v-text="item.text"></v-list-item-title>
               </v-list-item-content>
@@ -47,16 +44,16 @@ export default {
   data: () => ({
     selectedItem: 0,
     items: [
-      { text: "My Files", icon: "mdi-folder" },
-      { text: "Shared with me", icon: "mdi-account-multiple" },
-      { text: "Starred", icon: "mdi-star" },
-      { text: "Recent", icon: "mdi-history" },
-      { text: "Offline", icon: "mdi-check-circle" },
-      { text: "Uploads", icon: "mdi-upload" },
-      { text: "Backups", icon: "mdi-cloud-upload" },
-    ],
-  }),
-};
+      { text: 'My Files', icon: 'mdi-folder' },
+      { text: 'Shared with me', icon: 'mdi-account-multiple' },
+      { text: 'Starred', icon: 'mdi-star' },
+      { text: 'Recent', icon: 'mdi-history' },
+      { text: 'Offline', icon: 'mdi-check-circle' },
+      { text: 'Uploads', icon: 'mdi-upload' },
+      { text: 'Backups', icon: 'mdi-cloud-upload' }
+    ]
+  })
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import OnlinePersons from '@/components/OnlinePersons'
-
+import 'es6-promise/auto'
 
 Vue.use(Router)
 

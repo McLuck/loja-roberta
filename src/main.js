@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 

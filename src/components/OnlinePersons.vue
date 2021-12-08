@@ -1,7 +1,6 @@
 <template>
 
-<p>On line persons</p>   
- 
+<p>On line persons</p>
 </template>
 
 <script>

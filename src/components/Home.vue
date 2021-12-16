@@ -2,10 +2,10 @@
   <div>
     <v-app-bar color="deep-purple accent-4" dense dark>
       <v-app-bar-nav-icon>
-          <v-btn icon>
-        <v-icon>mdi-car-connected</v-icon>
-      </v-btn>
-        </v-app-bar-nav-icon>
+        <v-btn icon>
+          <v-icon>mdi-car-connected</v-icon>
+        </v-btn>
+      </v-app-bar-nav-icon>
 
       <v-toolbar-title></v-toolbar-title>
 
@@ -29,7 +29,12 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-    <v-main> conteudo </v-main>
+    <v-main>
+      conteudo {{ nome }} {{sexo}} <br>
+      <input type="text" v-model="nome"/>
+      <br>
+      <input type="text" v-model="sexo"/>
+    </v-main>
     <v-footer v:bind="fixed" padless>
       <v-col class="text-center" cols="12">
         {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
@@ -39,6 +44,19 @@
 </template>
 
 <script>
+export default {
+  data () {
+    return {
+      nome: 'Alice',
+      sexo: 'Feminino'
+    }
+  },
+  methods: {
+    minhaFuncao () {
+      console.log('minhaFuncao')
+    }
+  }
+}
 </script>
 
 <style>

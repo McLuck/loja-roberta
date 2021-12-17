@@ -6,15 +6,11 @@
           <v-icon>mdi-car-connected</v-icon>
         </v-btn>
       </v-app-bar-nav-icon>
-
       <v-toolbar-title></v-toolbar-title>
-
       <v-spacer></v-spacer>
-
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-
       <v-menu left bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on">
@@ -90,13 +86,14 @@
 export default {
   data () {
     return {
-      nome: 'Alice',
-      sexo: 'Feminino',
-      email: 'roberta77@gmail.com',
-      endereco: 'Av. A, num:102, casa 7',
-      bairro: 'Bosque do Caju',
-      cidade: 'Araraquara',
-      cep: '13569-254'
+      errors: [],
+      nome: null,
+      sexo: null,
+      email: null,
+      endereco: null,
+      bairro: null,
+      cidade: null,
+      cep: null
     }
   },
   methods: {
@@ -104,6 +101,37 @@ export default {
       // const msn = 'O nome da pessoa é : ' + this.nome + ' e o sexo é : ' + this.sexo
       const msg = `O nome é : ${this.nome} ; \n sexo : ${this.sexo} ; \n email : ${this.email} ;\n endereço: ${this.endereco} ; \n bairro : ${this.bairro} ; \n cidade : ${this.cidade} ; \n CEP : ${this.cep} .`
       alert(msg)
+    },
+    checkForm: function (e) {
+      if (this.name && this.sexo && this.email && this.endereco && this.bairro && this.cidade && this.cep) {
+        return true
+      }
+      this.errors = []
+      if (!this.nome) {
+        this.errors.push('o nome é obrigatório')
+      }
+      if (!this.nome) {
+        this.errors.push('o nome é obrigatório')
+      }
+      if (!this.sexo) {
+        this.errors.push('o sexo é obrigatório')
+      }
+      if (!this.email) {
+        this.errors.push('o e-mail é obrigatório')
+      }
+      if (!this.endereco) {
+        this.errors.push('o endereço é obrigatório')
+      }
+      if (!this.bairro) {
+        this.errors.push('o bairro é obrigatório')
+      }
+      if (!this.cidade) {
+        this.errors.push('a cidade é obrigatório')
+      }
+      if (!this.cep) {
+        this.errors.push('o cep é obrigatório')
+      }
+      e.preventDefault()
     }
   }
 }

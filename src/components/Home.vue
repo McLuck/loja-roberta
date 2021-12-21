@@ -30,6 +30,8 @@
       <br/>
       <input type='text' v-model='nome' />
       <br/>
+       <input type='text' v-model='filhos' />
+      <br/>
       <input type='text' v-model='sexo' />
       <br/>
       <input type='text' v-model='email' />
@@ -42,36 +44,44 @@
       <br/>
       <input type='text' v-model='cep' />
       <v-container>
-        <v-form>
+        <form @submit = "checkForm" action="https://vuejs.org/" method="post">
+        <p v-if = "errors.length">
+          <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
+          <ul>
+            <li v-for= "error in errors" v-bind:key= "error">{{ error }}</li>
+          </ul>
+          </p>
           <v-row>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='nome' label='Name' required></v-text-field>
+              <v-text-field v-model='nome' label='Name' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='sexo' label='Sexo' required></v-text-field>
+              <v-text-field v-model='filhos' label='Filhos' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='email' label='E-mail' required></v-text-field>
+              <v-text-field v-model='sexo' label='Sexo' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='endereco' label='Endereço (rua / avenida / numero)' required></v-text-field>
+              <v-text-field v-model='email' label='E-mail' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='bairro' label='Bairro' required></v-text-field>
+              <v-text-field v-model='endereco' label='Endereço (rua / avenida / numero)' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='cidade' label='Cidade' required></v-text-field>
+              <v-text-field v-model='bairro' label='Bairro' ></v-text-field>
+            </v-col>
+            <v-col cols='12' md='4'>
+              <v-text-field v-model='cidade' label='Cidade' ></v-text-field>
             </v-col><v-col cols='12' md='4'>
-              <v-text-field v-model='cep' label='CEP' required></v-text-field>
+              <v-text-field v-model='cep' label='CEP' ></v-text-field>
             </v-col>
             <v-col>
               <v-btn
                 elevation="2"
-                outlined @click="minhaFuncao"
-              >BOTÃO</v-btn>
+                outlined type= "submit" >BOTÃO</v-btn>
             </v-col>
           </v-row>
-        </v-form>
+        </form>
       </v-container>
     </v-main>
     <v-footer v:bind='fixed' padless>
@@ -84,10 +94,12 @@
 
 <script>
 export default {
+  el: '#Home',
   data () {
     return {
       errors: [],
       nome: null,
+      filhos: null,
       sexo: null,
       email: null,
       endereco: null,
@@ -98,12 +110,13 @@ export default {
   },
   methods: {
     minhaFuncao () {
+      // https://br.vuejs.org/v2/cookbook/form-validation.html
       // const msn = 'O nome da pessoa é : ' + this.nome + ' e o sexo é : ' + this.sexo
-      const msg = `O nome é : ${this.nome} ; \n sexo : ${this.sexo} ; \n email : ${this.email} ;\n endereço: ${this.endereco} ; \n bairro : ${this.bairro} ; \n cidade : ${this.cidade} ; \n CEP : ${this.cep} .`
+      const msg = `O nome é : ${this.nome}  \n e seus filhos(a) são:  ${this.filhos} \n sexo : ${this.sexo}  \n email : ${this.email} \n endereço: ${this.endereco} \n bairro : ${this.bairro} \n cidade : ${this.cidade} \n CEP : ${this.cep} `
       alert(msg)
     },
     checkForm: function (e) {
-      if (this.name && this.sexo && this.email && this.endereco && this.bairro && this.cidade && this.cep) {
+      if (this.nome && this.filhos && this.sexo && this.email && this.endereco && this.bairro && this.cidade && this.cep) {
         return true
       }
       this.errors = []
@@ -112,6 +125,9 @@ export default {
       }
       if (!this.nome) {
         this.errors.push('o nome é obrigatório')
+      }
+      if (!this.filhos) {
+        this.errors.push('o nome dos filhos é obrigatório')
       }
       if (!this.sexo) {
         this.errors.push('o sexo é obrigatório')

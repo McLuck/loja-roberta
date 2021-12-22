@@ -27,22 +27,6 @@
     </v-app-bar>
     <v-main>
       conteudo {{ nome }} {{ sexo }} {{email}}{{ endereco }} {{ bairro }} {{ cidade }} {{ cep }} <br />
-      <br/>
-      <input type='text' v-model='nome' />
-      <br/>
-       <input type='text' v-model='filhos' />
-      <br/>
-      <input type='text' v-model='sexo' />
-      <br/>
-      <input type='text' v-model='email' />
-      <br/>
-      <input type='text' v-model='endereco' />
-      <br/>
-      <input type='text' v-model='bairro' />
-      <br/>
-      <input type='text' v-model='cidade' />
-      <br/>
-      <input type='text' v-model='cep' />
       <v-container>
         <form @submit = "checkForm" action="https://vuejs.org/" method="post">
         <p v-if = "errors.length">
@@ -53,7 +37,7 @@
           </p>
           <v-row>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='nome' label='Name' ></v-text-field>
+              <v-text-field v-model='nome' label='Nome' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
               <v-text-field v-model='filhos' label='Filhos' ></v-text-field>
@@ -62,7 +46,7 @@
               <v-text-field v-model='sexo' label='Sexo' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
-              <v-text-field v-model='email' label='E-mail' ></v-text-field>
+              <v-text-field :rules= 'regraEmail' v-model='email' label='E-mail' ></v-text-field>
             </v-col>
             <v-col cols='12' md='4'>
               <v-text-field v-model='endereco' label='Endereço (rua / avenida / numero)' ></v-text-field>
@@ -72,7 +56,8 @@
             </v-col>
             <v-col cols='12' md='4'>
               <v-text-field v-model='cidade' label='Cidade' ></v-text-field>
-            </v-col><v-col cols='12' md='4'>
+            </v-col>
+            <v-col cols='12' md='4'>
               <v-text-field v-model='cep' label='CEP' ></v-text-field>
             </v-col>
             <v-col>
@@ -105,12 +90,19 @@ export default {
       endereco: null,
       bairro: null,
       cidade: null,
-      cep: null
+      cep: null,
+      regraEmail: [
+        value => !!value || 'Required.',
+        value => (value || '').length <= 20 || 'Max 20 characters',
+        value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        }
+      ]
     }
   },
   methods: {
     minhaFuncao () {
-      // https://br.vuejs.org/v2/cookbook/form-validation.html
       // const msn = 'O nome da pessoa é : ' + this.nome + ' e o sexo é : ' + this.sexo
       const msg = `O nome é : ${this.nome}  \n e seus filhos(a) são:  ${this.filhos} \n sexo : ${this.sexo}  \n email : ${this.email} \n endereço: ${this.endereco} \n bairro : ${this.bairro} \n cidade : ${this.cidade} \n CEP : ${this.cep} `
       alert(msg)

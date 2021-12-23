@@ -104,7 +104,7 @@ export default {
   methods: {
     minhaFuncao () {
       // const msn = 'O nome da pessoa é : ' + this.nome + ' e o sexo é : ' + this.sexo
-      const msg = `O nome é : ${this.nome}  \n e seus filhos(a) são:  ${this.filhos} \n sexo : ${this.sexo}  \n email : ${this.email} \n endereço: ${this.endereco} \n bairro : ${this.bairro} \n cidade : ${this.cidade} \n CEP : ${this.cep} `
+      const msg = `O nome é : ${this.nome}  \n e qtde de filhos(a) :  ${this.filhos} \n sexo : ${this.sexo}  \n email : ${this.email} \n endereço: ${this.endereco} \n bairro : ${this.bairro} \n cidade : ${this.cidade} \n CEP : ${this.cep} `
       alert(msg)
     },
     checkForm: function (e) {
@@ -119,7 +119,7 @@ export default {
         this.errors.push('o nome é obrigatório')
       }
       if (!this.filhos) {
-        this.errors.push('o nome dos filhos é obrigatório')
+        this.errors.push('quantidade de filhos é obrigatório')
       }
       if (!this.sexo) {
         this.errors.push('o sexo é obrigatório')

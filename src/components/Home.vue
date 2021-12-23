@@ -36,29 +36,29 @@
           </ul>
           </p>
           <v-row>
-            <v-col cols='12' md='4'>
-              <v-text-field v-model='nome' label='Nome' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="nome" label="Nome" ></v-text-field>
             </v-col>
-            <v-col cols='12' md='4'>
-              <v-text-field v-model='filhos' label='Filhos' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field type="number" v-model="filhos" label="Filhos" ></v-text-field>
             </v-col>
-            <v-col cols='12' md='4'>
-              <v-text-field v-model='sexo' label='Sexo' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="sexo" label="Sexo" ></v-text-field>
             </v-col>
-            <v-col cols='12' md='4'>
-              <v-text-field :rules= 'regraEmail' v-model='email' label='E-mail' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field :rules= "regraEmail" v-model="email" label="E-mail" ></v-text-field>
             </v-col>
-            <v-col cols='12' md='4'>
-              <v-text-field v-model='endereco' label='Endereço (rua / avenida / numero)' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="endereco" label="Endereço (rua / avenida / numero)" ></v-text-field>
             </v-col>
-            <v-col cols='12' md='4'>
-              <v-text-field v-model='bairro' label='Bairro' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="bairro" label="Bairro" ></v-text-field>
             </v-col>
-            <v-col cols='12' md='4'>
-              <v-text-field v-model='cidade' label='Cidade' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="cidade" label="Cidade" ></v-text-field>
             </v-col>
-            <v-col cols='12' md='4'>
-              <v-text-field v-model='cep' label='CEP' ></v-text-field>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="cep" label="CEP" ></v-text-field>
             </v-col>
             <v-col>
               <v-btn
@@ -69,8 +69,8 @@
         </form>
       </v-container>
     </v-main>
-    <v-footer v:bind='fixed' padless>
-      <v-col class='text-center' cols='12'>
+    <v-footer v:bind="fixed" padless>
+      <v-col class="text-center" cols="12">
         {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
       </v-col>
     </v-footer>

@@ -28,7 +28,7 @@
     <v-main>
       conteudo {{ nome }} {{ sexo }} {{email}}{{ endereco }} {{ bairro }} {{ cidade }} {{ cep }} <br />
       <v-container>
-        <form @submit = "checkForm" action="https://vuejs.org/" method="post">
+        <form @submit = "checkForm,checkCep, checkFilhos ,checkNome" action="https://vuejs.org/" method="post">
         <p v-if = "errors.length">
           <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
           <ul>
@@ -37,7 +37,7 @@
           </p>
           <v-row>
             <v-col cols="12" md="4">
-              <v-text-field v-model="nome" label="Nome" ></v-text-field>
+              <v-text-field :rules = "regraNome" v-model="nome" label="Nome" ></v-text-field>
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field type="number" v-model="filhos" label="Filhos" ></v-text-field>
@@ -82,15 +82,17 @@ export default {
   el: '#Home',
   data () {
     return {
+      pessoa :{
+        nome: null,
+        filhos: null,
+        sexo: null,
+        email: null,
+        endereco: null,
+        bairro: null,
+        cidade: null,
+        cep: null
+      },
       errors: [],
-      nome: null,
-      filhos: null,
-      sexo: null,
-      email: null,
-      endereco: null,
-      bairro: null,
-      cidade: null,
-      cep: null,
       regraEmail: [
         value => !!value || 'Required.',
         value => (value || '').length <= 20 || 'Max 20 characters',
@@ -107,14 +109,12 @@ export default {
       const msg = `O nome é : ${this.nome}  \n e qtde de filhos(a) :  ${this.filhos} \n sexo : ${this.sexo}  \n email : ${this.email} \n endereço: ${this.endereco} \n bairro : ${this.bairro} \n cidade : ${this.cidade} \n CEP : ${this.cep} `
       alert(msg)
     },
-    checkForm: function (e) {
+    checkTudo: function(){
+      checkForm = { function (e) {
       if (this.nome && this.filhos && this.sexo && this.email && this.endereco && this.bairro && this.cidade && this.cep) {
         return true
       }
       this.errors = []
-      if (!this.nome) {
-        this.errors.push('o nome é obrigatório')
-      }
       if (!this.nome) {
         this.errors.push('o nome é obrigatório')
       }
@@ -140,9 +140,47 @@ export default {
         this.errors.push('o cep é obrigatório')
       }
       e.preventDefault()
+    },
+    
+
+   checkCep = { function (strCEP, blnVazio) {
+            var objER = /^[0-9]{2}.[0-9]{3}-[0-9]{3}$/
+             strCEP = Trim(strCEP)
+            if (strCEP.length > 0) {
+              if(objER.test(strCEP))
+                        return true
+                    else{
+                        return false
+                        }
+                    }else {
+          return blnVazio;
+        }
+            }
+  },
+
+    checkFilho = { function () {
+      var number = filhos.toFixed(2)
+      return number;
+    }
+    },
+
+    checkSexo = { function (){
+      var sexo = [feminino, masculino]
+      if (sexo == [0] || sexo [1]) {
+        return true
+      }else{
+        console.log("feminino ou masculino")
+      }
+    },
+    checkName = { function (input, inputName){
+      let inputToCompare = document.getElementsByName(inputName)[0]
+      let errorMessage = `Este campo precisa estar igual ao ${inputName}`
+          if (input.value !== inputToCompare.value) {
+            this.printMessage(input, errorMessage)
+          }
+      }
     }
   }
-}
 </script>
 
 <style>

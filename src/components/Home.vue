@@ -2,25 +2,48 @@
   <div>
       <v-select :items= "items"></v-select>
       {{pessoas}}
-      pessoas
-      <table >
+  <v-simple-table>
+    <template v-slot:default>
+      <thead>
         <tr>
-          <td>
-            nome
-          </td>
-          <td>
-            email
-          </td>
+           <th class="text-left">
+            ID
+          </th>
+          <th class="text-left">
+            Nome
+          </th>
+          <th class="text-left">
+            E-Mail
+          </th>
+          <th class="text-left">
+            Endereço
+          </th>  <th class="text-left">
+            Bairro
+          </th>  <th class="text-left">
+            Cidade
+          </th>  <th class="text-left">
+            Estado
+          </th>  <th class="text-left">
+            Excluir
+          </th>
         </tr>
-         <tr v-for= "variavel in pessoas" :key= "variavel.id">
-          <td>
-            {{variavel.nome}}
-          </td>
-          <td>
-            {{variavel.email}}
-          </td>
+      </thead>
+      <tbody>
+       <tr v-for="variavel in pessoas" :key="variavel.id">
+        <td>{{variavel.id}}</td>
+        <td>{{variavel.name}}</td>
+        <td>{{variavel.email}}</td>
+        <td>{{variavel.endereco.logradouro}}</td>
+        <td>{{variavel.endereco.bairro}}</td>
+        <td>{{variavel.endereco.cidade}}</td>
+        <td>{{variavel.endereco.estado}}</td>
+        <td> <v-btn color= red, @click="excluir(variavel)">Excluir</v-btn></td>
         </tr>
-      </table>
+      </tbody>
+    </template>
+  </v-simple-table>
+  <br>
+  <br>
     <v-app-bar color="deep-purple accent-4" dense dark>
       <v-app-bar-nav-icon>
         <v-btn icon>
@@ -51,7 +74,7 @@
       v-model="name"
       :counter="20"
       :rules="nameRules"
-      label="Name"
+      label="Nome"
       required
     ></v-text-field>
 
@@ -141,15 +164,15 @@ export default {
     items: [
       '0 filhos',
       '1 filhos',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10'
+      '2 filhos',
+      '3 filhos',
+      '4 filhos',
+      '5 filhos',
+      '6 filhos',
+      '7 filhos',
+      '8 filhos',
+      '9 filhos',
+      '10 filhos'
     ],
     email: '',
     emailRules: [
@@ -158,18 +181,22 @@ export default {
     ],
     endereco: {
       logradouro: null,
+      endereco: null,
       enderecoRules: [
         v => !!v || 'Enderecço is required',
         v => (v && v.length <= 10) || 'Endereço must be valid'
       ],
+      bairro: null,
       bairroRules: [
         v => !!v || 'Bairro is required',
         v => (v && v.length <= 10) || 'Bairro must be valid'
       ],
+      cidade: null,
       cidadeRules: [
         v => !!v || 'Cidade is required',
         v => (v && v.length <= 10) || 'Cidade must be valid'
       ],
+      estado: null,
       estadoRules: [
         v => !!v || 'Estado is required',
         v => (v && v.length <= 10) || 'Estado must be valid'
@@ -185,10 +212,16 @@ export default {
           nome: this.name,
           email: this.email,
           endereco: {
-            logradouro: this.endereco.logradouro
+            logradouro: this.endereco.logradouro,
+            bairro: this.endereco.bairro,
+            cidade: this.endereco.cidade,
+            estado: this.endereco.estado
           }
         })
       }
+    },
+    excluir (variavel) {
+      console.log(variavel)
     },
     reset () {
       this.$refs.form.reset()

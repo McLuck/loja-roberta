@@ -23,21 +23,22 @@
             Cidade
           </th>  <th class="text-left">
             Estado
-          </th>  <th class="text-left">
-            Excluir
           </th>
-        </tr>
-      </thead>
+          </tr>
+          </thead>
       <tbody>
-       <tr v-for="variavel in pessoas" :key="variavel.id">
-        <td>{{variavel.id}}</td>
-        <td>{{variavel.name}}</td>
-        <td>{{variavel.email}}</td>
-        <td>{{variavel.endereco.logradouro}}</td>
-        <td>{{variavel.endereco.bairro}}</td>
-        <td>{{variavel.endereco.cidade}}</td>
-        <td>{{variavel.endereco.estado}}</td>
-        <td> <v-btn color= red, @click="excluir(variavel)">Excluir</v-btn></td>
+        
+        <tr v-for="variavel in pessoas" :key="variavel.id">
+          <td>{{variavel.id}}</td>
+          <td>{{variavel.nome}}</td>
+          <td>{{variavel.email}}</td>
+          <td>{{variavel.endereco.logradouro}}</td>
+          <td>{{variavel.endereco.bairro}}</td>
+          <td>{{variavel.endereco.cidade}}</td>
+          <td>{{variavel.endereco.estado}}</td>
+        </tr>
+        <tr>
+          <td> <v-btn color= red, @click="excluir()">Excluir</v-btn></td>
         </tr>
       </tbody>
     </template>
@@ -142,6 +143,8 @@
   </v-form>
   </v-container>
 </v-main>
+<br>
+<br>
    <v-footer v:bind="fixed" padless>
       <v-col class="text-center" cols="12">
         {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
@@ -161,6 +164,7 @@ export default {
       v => (v && v.length <= 10) || 'Name must be less than 10 characters'
     ],
     select: null,
+    tabela: '',
     items: [
       '0 filhos',
       '1 filhos',
@@ -220,8 +224,34 @@ export default {
         })
       }
     },
-    excluir (variavel) {
-      console.log(variavel)
+    excluir () {
+   //this.pessoas.splice(id,1)
+      console.log(this.pessoas.length)
+      for (let i; i <= this.pessoas.length; i++){
+        if (this.pessoas[i] === 2){
+          console.log(this.pessoas[i])
+        }
+      }
+      
+      // this.pessoas.map((pessoa) => {
+      //   let index = this.pessoas.filter(pessoa.nome, function () {
+          
+      //   } )
+      //   if (index != -1){
+      //     console.log(this.pessoas.splice(index,1))
+      //   }
+     //   console.log(this.pessoas.splice(index,1))
+    //    console.log(index)
+     //   console.log(this.pessoas[index].nome)
+      //})
+
+
+      // this.pessoas.filter( this.pessoas.nome, function (objeto,chave){
+      //   return objeto.map( function (obj){
+      //     return obj[chave]
+      //   })
+      
+      // })
     },
     reset () {
       this.$refs.form.reset()
@@ -235,6 +265,6 @@ export default {
 
 <style>
 table,tr,td {
-  border: solid
+  border: steelblue
 }
 </style>

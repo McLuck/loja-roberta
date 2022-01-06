@@ -27,7 +27,6 @@
           </tr>
           </thead>
       <tbody>
-        
         <tr v-for="variavel in pessoas" :key="variavel.id">
           <td>{{variavel.id}}</td>
           <td>{{variavel.nome}}</td>
@@ -36,9 +35,9 @@
           <td>{{variavel.endereco.bairro}}</td>
           <td>{{variavel.endereco.cidade}}</td>
           <td>{{variavel.endereco.estado}}</td>
+          <td> <v-btn color= red, @click="excluir(variavel.id)">Excluir</v-btn></td>
         </tr>
         <tr>
-          <td> <v-btn color= red, @click="excluir()">Excluir</v-btn></td>
         </tr>
       </tbody>
     </template>
@@ -224,34 +223,8 @@ export default {
         })
       }
     },
-    excluir () {
-   //this.pessoas.splice(id,1)
-      console.log(this.pessoas.length)
-      for (let i; i <= this.pessoas.length; i++){
-        if (this.pessoas[i] === 2){
-          console.log(this.pessoas[i])
-        }
-      }
-      
-      // this.pessoas.map((pessoa) => {
-      //   let index = this.pessoas.filter(pessoa.nome, function () {
-          
-      //   } )
-      //   if (index != -1){
-      //     console.log(this.pessoas.splice(index,1))
-      //   }
-     //   console.log(this.pessoas.splice(index,1))
-    //    console.log(index)
-     //   console.log(this.pessoas[index].nome)
-      //})
-
-
-      // this.pessoas.filter( this.pessoas.nome, function (objeto,chave){
-      //   return objeto.map( function (obj){
-      //     return obj[chave]
-      //   })
-      
-      // })
+    excluir (id) {
+      this.pessoas = this.pessoas.filter(p => p.id !== id)
     },
     reset () {
       this.$refs.form.reset()
